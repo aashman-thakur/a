@@ -1,28 +1,61 @@
+
 const Engine = Matter.Engine;
-const World= Matter.World;
+const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 
-var engine, world;
-var box1,canvas;
 
-function setup(){
-    var canvas = createCanvas(1200,400);
-    engine = Engine.create();
-    world = engine.world;
-    ground = new Ground(600,400,1200,50)
-    bin1=new Bin(1000,365,150,20)
-    bin2=new Bin(925,315,20,100)
-    bin3=new Bin(1075,315,20,100)
-    paperBall=new ball(100,200)
+
+var dustbinObj, paperObject,groundObject,a;	
+var world;
+
+function setup() {
+	createCanvas(1600, 700);
+	rectMode(CENTER);
+    engine=Engine.create();
+	world=engine.world;
+	groundObject=new ground(width/2,670,width,20);
+	paperObject=new paper(200,450,70);
+	dustbinObj=new dustbin(1200,650);
+	
+	
+
+	
+
+	Engine.run(engine);
+	
 }
 
-function draw(){
-    background(0);
-    Engine.update(engine);
-    ground.display();
-    bin1.display();
-    bin2.display();
-    bin3.display()
-    paperBall.display()
-    //maam the ball always go out of the canvas through the ground and bin
+
+function draw() {
+  rectMode(CENTER);
+  background(135,206,235);
+  fill(0)
+  textSize(30)
+ text('throwng trash in the dustbin is a good habit and keeps the room clean',10,50)
+  
+  paperObject.display();
+  groundObject.display();
+  dustbinObj.display();
+//sorry maam,I used the code u sent me as my pro24 is not working and i donot have the images.. but i modified it a little
+  
+  
+ 
+  
+  
+ 
 }
+
+function keyPressed() {
+  	if (keyCode === UP_ARROW) {
+
+    	Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:130,y:-160});
+
+    
+  	}
+}
+
+
+
+
+
